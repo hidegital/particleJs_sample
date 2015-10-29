@@ -282,6 +282,7 @@ gulp.task 'watch', ->
     gulp.watch ['src/js/*.js'], ['jsReload']
     gulp.watch ['src/js/lib/*.js'], ['jsBundle' ,'bsReload']
     gulp.watch ['src/img/*.+(jpg|jpeg|png|gif|svg)','src/img/**/*.+(jpg|jpeg|png|gif|svg)'], ['imgclean','copyimg']
+    gulp.watch ['src/data/*.json'], ['distjson' ,'bsReload']
 
 
 #task
@@ -293,7 +294,7 @@ gulp.task 'default', (callback) ->
 
 #delが上手くいかない時があるのでエラーが出たら再度叩く
 gulp.task 'build', (callback) ->
-    runSequence 'cleanDir','imgclean',
+    runSequence 'imgclean',
                 ['imagemin','cssmin','jsmin','htmlprettify','json','buildJsBundle'], callback
 
 #build
